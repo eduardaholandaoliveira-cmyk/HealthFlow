@@ -1,23 +1,19 @@
-/* ==========================
-   CONFIGURAÇÕES GERAIS
-==========================*/
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI',sans-serif;
+    font-family: Segoe UI;
 }
+
+
 
 body {
-    background: #F4F7FC;
+    background: #f4f7fc;
 }
 
 
 
-/* ==========================
-        MENU LATERAL
-==========================*/
+
 
 .sidebar {
     width: 260px;
@@ -26,27 +22,30 @@ body {
     top: 0;
     left: 0;
     padding: 25px;
-    background: linear-gradient( 180deg, #4285F4, #86D3FA );
+    background: linear-gradient( 180deg, #4B83E8, #89D2FA );
 }
 
 
 
-.logo {
+
+
+.logo-menu {
     margin-bottom: 40px;
 }
 
 
 
-    .logo h2 {
+    .logo-menu h2 {
         color: white;
-        font-size: 32px;
+        font-size: 30px;
     }
 
 
-    .logo p {
+
+    .logo-menu p {
         color: white;
-        opacity: .8;
     }
+
 
 
 
@@ -58,14 +57,14 @@ body {
 
 
 
+
     .sidebar nav a {
-        text-decoration: none;
-        color: white;
         padding: 15px;
         border-radius: 10px;
-        font-size: 18px;
-        transition: .3s;
+        text-decoration: none;
+        color: white;
     }
+
 
 
 
@@ -76,29 +75,22 @@ body {
 
 
 
-/* ==========================
-       ÁREA DE CONTEÚDO
-==========================*/
 
 .conteudo {
     margin-left: 260px;
     padding: 30px;
-    min-height: 100vh;
 }
 
 
 
 
-/* ==========================
-         LOGIN
-==========================*/
 
 .login-container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #86C5F8;
+    background: #87C6F7;
 }
 
 
@@ -109,9 +101,10 @@ body {
     padding: 40px;
     background: white;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,.15);
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
     text-align: center;
 }
+
 
 
 
@@ -122,68 +115,26 @@ body {
 
 
 
-.login-card h2 {
-    color: #356CC7;
-    margin-bottom: 10px;
-}
-
-
-
-.login-card p {
-    color: #666;
-    margin-bottom: 20px;
-}
-
-
 
 .login-card input {
     width: 100%;
-    padding: 14px;
+    padding: 15px;
     margin-top: 15px;
     border: none;
+    background: #f3f3f3;
     border-radius: 10px;
-    background: #F2F2F2;
-    outline: none;
 }
+
 
 
 
 .login-card button {
     width: 100%;
-    padding: 14px;
+    padding: 15px;
     margin-top: 20px;
-    border: none;
-    border-radius: 10px;
     background: #4B83E8;
     color: white;
-    font-size: 18px;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-}
-
-
-
-    .login-card button:hover {
-        background: #3567C5;
-    }
-
-
-
-
-/* ==========================
-      DASHBOARD
-==========================*/
-
-
-.dashboard-title {
-    color: #2D4A7A;
-    margin-bottom: 20px;
-}
-
-
-
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,.1);
 }

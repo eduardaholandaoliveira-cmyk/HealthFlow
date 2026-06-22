@@ -6,8 +6,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="Components\Layout\NavMenu.razor.css" />
-  </ItemGroup>
-
 </Project>
