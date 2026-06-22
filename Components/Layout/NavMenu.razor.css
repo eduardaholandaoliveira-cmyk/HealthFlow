@@ -1,0 +1,60 @@
+﻿.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 25px;
+    background: linear-gradient( 180deg, #3F82F4, #89D2FA );
+}
+
+
+
+.logo {
+    margin-bottom: 40px;
+}
+
+
+
+    .logo h2 {
+        color: white;
+        font-size: 32px;
+    }
+
+
+
+    .logo p {
+        color: white;
+        opacity: .8;
+    }
+
+
+
+
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+
+
+    nav a {
+        text-decoration: none;
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 18px;
+        transition: .3s;
+    }
+
+
+
+
+
+        nav a:hover {
+            background: rgba(255,255,255,.2);
+        }

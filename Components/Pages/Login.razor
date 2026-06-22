@@ -1,0 +1,40 @@
+﻿@page "/"
+@inject NavigationManager Navigation
+
+<div class="login-container">
+
+    <div class="login-card">
+
+        <img src="imagens/logo.png" class="logo" />
+
+        <h2>HealthFlow</h2>
+
+        <p>Acesse sua conta</p>
+
+        <input @bind="usuario"
+               placeholder="Usuário" />
+
+        <input @bind="senha"
+               type="password"
+               placeholder="Senha" />
+
+        <button @onclick="Entrar">
+            Entrar
+        </button>
+
+    </div>
+
+</div>
+
+
+@code{
+
+    private string usuario = "";
+    private string senha = "";
+
+    private void Entrar()
+    {
+        Navigation.NavigateTo("/dashboard");
+    }
+
+}
