@@ -1,3 +1,94 @@
 ﻿@page "/"
+@layout EmptyLayout
+@using HealthFlow.Services
+@inject AuthService AuthService
+@inject NavigationManager NavigationManager
 
-<h1>HealthFlow</h1>
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-logo">
+            <img src="imagens/foto de healtflow.jpeg" alt="HealthFlow" class="logo-img" />
+        </div>
+
+        <h1 class="login-title">HealthFlow</h1>
+        <p class="login-subtitle">Sistema Clínico da Clínica</p>
+
+        <form @onsubmit="HandleLogin" class="login-form">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" @bind="email" class="form-control" placeholder="seu@email.com" required />
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" @bind="senha" class="form-control" placeholder="Sua senha" required />
+            </div>
+
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="error-message">
+                    ⚠️ @errorMessage
+                </div>
+            }
+
+            <button type="submit" class="btn-login" disabled="@isLoading">
+                @if (isLoading)
+                {
+                    <span>Entrando...</span>
+                }
+                else
+                {
+                    <span>Entrar</span>
+                }
+            </button>
+        </form>
+
+        <p class="login-footer">© 2024 HealthFlow - Todos os direitos reservados</p>
+    </div>
+</div>
+
+@code {
+    private string email = "";
+    private string senha = "";
+    private string errorMessage = "";
+    private bool isLoading = false;
+
+    private async Task HandleLogin()
+    {
+        isLoading = true;
+        errorMessage = "";
+
+        try
+        {
+            bool success = await AuthService.LoginAsync(email, senha);
+
+            if (success)
+            {
+                NavigationManager.NavigateTo("/dashboard");
+            }
+            else
+            {
+                errorMessage = "E-mail ou senha inválidos!";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Erro ao fazer login: " + ex.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}
+
+<style>
+    .error-message {
+        background: #f8d7da;
+        color: #721c24;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #f5c6cb;
+    }
+</style>

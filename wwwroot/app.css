@@ -138,3 +138,204 @@ body {
     border-radius: 10px;
     cursor: pointer;
 }
+
+    .login-card button:hover {
+        background: #3A69D1;
+    }
+
+.login-title {
+    color: #4B83E8;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.login-subtitle {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        color: #333;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+    }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #4B83E8;
+        }
+
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(180deg, #4B83E8, #3A69D1);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: transform 0.2s;
+}
+
+    .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(75, 131, 232, 0.4);
+    }
+
+.login-footer {
+    color: #aaa;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.logo-img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+        padding: 15px;
+    }
+
+    .logo-menu h2 {
+        font-size: 18px;
+    }
+
+    .logo-menu p {
+        display: none;
+    }
+
+    .sidebar nav a {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .conteudo {
+        margin-left: 70px;
+        padding: 20px;
+    }
+
+    .login-card {
+        width: 90%;
+        max-width: 380px;
+        padding: 30px 20px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    .btn-edit, .btn-delete {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 60px;
+    }
+
+    .conteudo {
+        margin-left: 60px;
+        padding: 15px;
+    }
+
+    .login-card {
+        border-radius: 15px;
+    }
+
+    .login-title {
+        font-size: 22px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        font-size: 11px;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    .page-header {
+        padding: 0;
+    }
+}
+
+/* Melhorias gerais */
+h1 {
+    color: #4B83E8;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #4B83E8;
+    box-shadow: 0 0 0 3px rgba(75, 131, 232, 0.1);
+}
+
+/* Scrollbar customizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4B83E8;
+    border-radius: 4px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #3A69D1;
+    }

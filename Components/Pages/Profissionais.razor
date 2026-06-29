@@ -1,0 +1,129 @@
+@page "/profissionais"
+@layout MainLayout
+
+<h1>🩺 Profissionais</h1>
+
+<div class="page-container">
+    <div class="page-header">
+        <p>Gerenciar profissionais da clínica</p>
+        <button class="btn-primary">+ Novo Profissional</button>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Especialidade</th>
+                    <th>CPF</th>
+                    <th>E-mail</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dr. Carlos Oliveira</td>
+                    <td>Cardiologia</td>
+                    <td>111.222.333-00</td>
+                    <td>carlos@email.com</td>
+                    <td>
+                        <button class="btn-edit">Editar</button>
+                        <button class="btn-delete">Deletar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dra. Fernanda Costa</td>
+                    <td>Dermatologia</td>
+                    <td>444.555.666-00</td>
+                    <td>fernanda@email.com</td>
+                    <td>
+                        <button class="btn-edit">Editar</button>
+                        <button class="btn-delete">Deletar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .page-container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        background: #4B83E8;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .btn-primary:hover {
+        background: #3A69D1;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    th {
+        background: #f5f5f5;
+        font-weight: 600;
+        color: #333;
+    }
+
+    tr:hover {
+        background: #f9f9f9;
+    }
+
+    .btn-edit, .btn-delete {
+        padding: 5px 10px;
+        margin-right: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+    .btn-edit {
+        background: #4B83E8;
+        color: white;
+    }
+
+    .btn-edit:hover {
+        background: #3A69D1;
+    }
+
+    .btn-delete {
+        background: #e74c3c;
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background: #c0392b;
+    }
+</style>

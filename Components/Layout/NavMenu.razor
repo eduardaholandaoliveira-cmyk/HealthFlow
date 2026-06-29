@@ -1,73 +1,80 @@
 ﻿<div class="sidebar">
 
-
     <div class="logo-menu">
-
         <h2>HealthFlow</h2>
-
         <p>Sistema Clínico</p>
-
-
     </div>
 
-
-
     <nav>
-
-
         <a href="/dashboard">
-
             🏠 Dashboard
-
         </a>
-
-
 
         <a href="/pacientes">
-
             👤 Pacientes
-
         </a>
-
-
-
 
         <a href="/profissionais">
-
             🩺 Profissionais
-
         </a>
-
-
-
 
         <a href="/agendamentos">
-
             📅 Agendamentos
-
         </a>
 
-
-
         <a href="#">
-
             💰 Financeiro
-
         </a>
-
-
-
 
         <a href="#">
-
             ⚙ Configurações
-
         </a>
-
-
-
     </nav>
 
-
+    <div class="logout-section">
+        <button @onclick="HandleLogout" class="btn-logout">
+            🚪 Sair
+        </button>
+    </div>
 
 </div>
+
+@code {
+    [Inject]
+    private HealthFlow.Services.AuthService AuthService { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private void HandleLogout()
+    {
+        AuthService.Logout();
+        NavigationManager.NavigateTo("/");
+    }
+}
+
+<style>
+    .logout-section {
+        position: absolute;
+        bottom: 25px;
+        left: 25px;
+        right: 25px;
+    }
+
+    .btn-logout {
+        width: 100%;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+
+    .btn-logout:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+</style>
