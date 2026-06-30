@@ -13,15 +13,23 @@
         <h1 class="login-title">HealthFlow</h1>
         <p class="login-subtitle">Sistema Clínico da Clínica</p>
 
-        <form @onsubmit="HandleLogin" class="login-form">
+        <div class="login-form">
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" id="email" @bind="email" class="form-control" placeholder="seu@email.com" required />
+                <input type="email"
+                       id="email"
+                       @bind="email"
+                       class="form-control"
+                       placeholder="seu@email.com" />
             </div>
 
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" id="senha" @bind="senha" class="form-control" placeholder="Sua senha" required />
+                <input type="password"
+                       id="senha"
+                       @bind="senha"
+                       class="form-control"
+                       placeholder="Sua senha" />
             </div>
 
             @if (!string.IsNullOrEmpty(errorMessage))
@@ -31,7 +39,11 @@
                 </div>
             }
 
-            <button type="submit" class="btn-login" disabled="@isLoading">
+            <button type="button"
+                    class="btn-login"
+                    @onclick="HandleLogin"
+                    disabled="@isLoading">
+
                 @if (isLoading)
                 {
                     <span>Entrando...</span>
@@ -40,14 +52,18 @@
                 {
                     <span>Entrar</span>
                 }
-            </button>
-        </form>
 
-        <p class="login-footer">© 2024 HealthFlow - Todos os direitos reservados</p>
+            </button>
+        </div>
+
+        <p class="login-footer">
+            © 2024 HealthFlow - Todos os direitos reservados
+        </p>
     </div>
 </div>
 
 @code {
+
     private string email = "";
     private string senha = "";
     private string errorMessage = "";
@@ -64,7 +80,7 @@
 
             if (success)
             {
-                NavigationManager.NavigateTo("/dashboard");
+                NavigationManager.NavigateTo("/dashboard", true);
             }
             else
             {
@@ -73,12 +89,10 @@
         }
         catch (Exception ex)
         {
-            errorMessage = "Erro ao fazer login: " + ex.Message;
+            errorMessage = ex.Message;
         }
-        finally
-        {
-            isLoading = false;
-        }
+
+        isLoading = false;
     }
 }
 
