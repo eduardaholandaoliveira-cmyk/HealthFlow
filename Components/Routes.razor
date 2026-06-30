@@ -1,11 +1,13 @@
 ﻿@using HealthFlow.Components.Layout
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components
 
 <Router AppAssembly="@typeof(Program).Assembly">
 
     <Found Context="routeData">
 
         <RouteView
-            @* RouteData="routeData" *@
+            RouteData="routeData"
             DefaultLayout="@typeof(MainLayout)" />
 
         <FocusOnNavigate

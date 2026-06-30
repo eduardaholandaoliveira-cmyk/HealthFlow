@@ -10,15 +10,14 @@ namespace HealthFlow.Services
 
         public async Task<bool> LoginAsync(string email, string password)
         {
-            // Validação simples
+            
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 return false;
             }
 
-            // Simulação de autenticação
-            // Em produção, isso seria uma chamada a uma API
-            await Task.Delay(500); // Simula latência
+            
+            await Task.Delay(500); 
 
             _isAuthenticated = true;
             _userEmail = email;
