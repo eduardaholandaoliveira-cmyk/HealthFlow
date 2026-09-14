@@ -10,11 +10,10 @@
     <PackageReference Include="MySql.Data" Version="26.7.0" />
   </ItemGroup>
 
-<<<<<<< Updated upstream
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="DAO\" />
+    <Folder Include="Configs\" />
   </ItemGroup>
 
-=======
->>>>>>> Stashed changes
 </Project>

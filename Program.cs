@@ -1,12 +1,10 @@
 using HealthFlow.Components;
-using HealthFlow.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddScoped<AuthService>();
 builder.Services.AddAntiforgery();
 
 var app = builder.Build();

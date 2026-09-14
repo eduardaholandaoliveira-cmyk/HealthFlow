@@ -1,7 +1,5 @@
 ﻿@page "/"
 @layout EmptyLayout
-@using HealthFlow.Services
-@inject AuthService AuthService
 @inject NavigationManager NavigationManager
 
 <div class="login-container">
@@ -76,16 +74,6 @@
 
         try
         {
-            bool success = await AuthService.LoginAsync(email, senha);
-
-            if (success)
-            {
-                NavigationManager.NavigateTo("/dashboard", true);
-            }
-            else
-            {
-                errorMessage = "E-mail ou senha inválidos!";
-            }
         }
         catch (Exception ex)
         {
