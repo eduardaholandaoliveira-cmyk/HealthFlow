@@ -1,6 +1,19 @@
 ﻿namespace HealthFlow.Models
 {
-    public class Funcionario
+    public class Funcionariom
     {
+        public int IdFuncionario { get; set; }
+
+        public string Nome { get; set; } = string.Empty;
+
+        public string Cpf { get; set; } = string.Empty;
+
+        public string Email { get; set; } = string.Empty;
+
+        public string Sexo { get; set; } = string.Empty;
+
+        public DateTime DataNasc { get; set; }
+
+        public string SenhaAcesso { get; set; } = string.Empty;
     }
 }
