@@ -1,6 +1,6 @@
 ﻿namespace HealthFlow.DAO
 {
-    public class FileName
+    public class ProcessoDAO
     {
     }
 }
