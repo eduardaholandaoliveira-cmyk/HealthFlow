@@ -11,7 +11,7 @@
 
             public double SaldoInicial { get; set; }
 
-            public double? SaldoFinal { get; set; }
+            public double? SaldoFinal { get; set; } = 0;
 
             public double TotalEntradas { get; set; }
 
