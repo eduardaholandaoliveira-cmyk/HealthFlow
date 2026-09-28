@@ -1,46 +1,45 @@
 ﻿@page "/configuracoes"
 @layout MainLayout
 
-<div class="configuracoes-page @(modoEscuro ? "modo-escuro" : "")">
+<div class="configuracoes @(modoEscuro ? "tema-escuro" : "")">
 
-    <div class="cabecalho">
-        <div>
-            <h1>Configurações</h1>
-            <p>Gerencie as preferências do HealthFlow.</p>
-        </div>
+    <div class="config-header">
+        <h1>Configurações</h1>
+        <p>Gerencie as configurações do sistema HealthFlow.</p>
     </div>
 
     <div class="config-grid">
 
         <!-- PERFIL -->
+
         <div class="config-card">
 
-            <div class="icone-card">
+            <div class="config-icon">
                 <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="8" r="4" />
-                    <path d="M4 21C4 16.6 7.6 14 12 14C16.4 14 20 16.6 20 21" />
+                    <path d="M4 21C4 16.5 7.5 14 12 14C16.5 14 20 16.5 20 21" />
                 </svg>
             </div>
 
-            <div class="card-conteudo">
+            <div class="config-content">
 
                 <h2>Perfil</h2>
 
-                <p class="descricao">
+                <p>
                     Informações do usuário conectado.
                 </p>
 
-                <div class="informacao">
+                <div class="info">
                     <span>Usuário</span>
                     <strong>Usuário HealthFlow</strong>
                 </div>
 
-                <div class="informacao">
+                <div class="info">
                     <span>E-mail</span>
                     <strong>usuario@healthflow.com</strong>
                 </div>
 
-                <div class="informacao">
+                <div class="info">
                     <span>Tipo de usuário</span>
                     <strong>Paciente</strong>
                 </div>
@@ -50,37 +49,39 @@
         </div>
 
 
-        <!-- MODO ESCURO -->
+        <!-- APARÊNCIA -->
+
         <div class="config-card">
 
-            <div class="icone-card">
+            <div class="config-icon">
                 <svg viewBox="0 0 24 24">
                     <path d="M21 15.5A9 9 0 0 1 8.5 3A9 9 0 1 0 21 15.5Z" />
                 </svg>
             </div>
 
-            <div class="card-conteudo">
+            <div class="config-content">
 
                 <h2>Aparência</h2>
 
-                <p class="descricao">
-                    Escolha como o sistema será exibido.
+                <p>
+                    Escolha o modo de exibição do sistema.
                 </p>
 
-                <div class="opcao">
+                <div class="dark-option">
 
                     <div>
                         <strong>Modo escuro</strong>
 
-                        <p>
-                            Ativar tema escuro no sistema.
-                        </p>
+                        <small>
+                            Alterar as cores de todas as páginas.
+                        </small>
                     </div>
 
                     <label class="switch">
 
                         <input type="checkbox"
-                               @bind="modoEscuro" />
+                               @bind="modoEscuro"
+                               @bind:after="AlterarTema" />
 
                         <span class="slider"></span>
 
@@ -94,33 +95,26 @@
 
 
         <!-- SUPORTE -->
+
         <div class="config-card">
 
-            <div class="icone-card">
+            <div class="config-icon">
                 <svg viewBox="0 0 24 24">
-                    <path d="M21 11.5A8.4 8.4 0 0 1 12 20A8.4 8.4 0 0 1 5.5 17L3 18L4 14.5A8 8 0 1 1 21 11.5Z" />
-                    <path d="M8 11H8.01" />
-                    <path d="M12 11H12.01" />
-                    <path d="M16 11H16.01" />
+                    <path d="M21 11.5A8.5 8.5 0 0 1 12 20A8.5 8.5 0 0 1 5.5 17L3 18L4 14.5A8 8 0 1 1 21 11.5Z" />
                 </svg>
             </div>
 
-            <div class="card-conteudo">
+            <div class="config-content">
 
                 <h2>Suporte</h2>
 
-                <p class="descricao">
-                    Precisa de ajuda? Entre em contato pelo WhatsApp.
+                <p>
+                    Entre em contato com nossa equipe pelo WhatsApp.
                 </p>
 
-                <a class="btn-whatsapp"
+                <a class="whatsapp"
                    href="https://wa.me/5569993511256"
                    target="_blank">
-
-                    <svg viewBox="0 0 24 24">
-                        <path d="M20 4.5A9.5 9.5 0 0 0 4.2 16.1L3 21L7.9 19.8A9.5 9.5 0 1 0 20 4.5Z" />
-                        <path d="M8.5 7.5C8.2 8 8 8.5 8.2 9.2C8.8 11 10.4 12.8 12 13.7C12.8 14.2 13.8 14.5 14.4 14.2L15.8 13.5C16.1 13.3 16.2 12.9 16 12.6L15.1 11.5C14.9 11.2 14.5 11.1 14.2 11.3L13.4 11.8C13.1 12 12.7 11.9 12.4 11.7C11.7 11.3 10.8 10.5 10.3 9.8C10.1 9.5 10.1 9.2 10.3 8.9L10.7 8.2C10.9 7.9 10.8 7.5 10.5 7.3L9.2 6.8C8.9 6.7 8.6 7 8.5 7.5Z" />
-                    </svg>
 
                     Falar pelo WhatsApp
 
@@ -131,10 +125,11 @@
         </div>
 
 
-        <!-- SOBRE O SISTEMA -->
+        <!-- SOBRE -->
+
         <div class="config-card">
 
-            <div class="icone-card">
+            <div class="config-icon">
                 <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="9" />
                     <path d="M12 11V16" />
@@ -142,23 +137,21 @@
                 </svg>
             </div>
 
-            <div class="card-conteudo">
+            <div class="config-content">
 
                 <h2>Sobre o HealthFlow</h2>
 
-                <p class="descricao">
-                    Sistema desenvolvido para auxiliar no gerenciamento
-                    de clínicas e atendimentos.
+                <p>
+                    Sistema desenvolvido para auxiliar no
+                    gerenciamento de clínicas e atendimentos.
                 </p>
 
-                <div class="versao">
-                    <span>Versão</span>
-                    <strong>1.0</strong>
-                </div>
+                <div class="system-status">
 
-                <div class="status-sistema">
-                    <span class="bolinha"></span>
+                    <span></span>
+
                     Sistema funcionando normalmente
+
                 </div>
 
             </div>
@@ -174,28 +167,35 @@
 
     private bool modoEscuro = false;
 
+    private void AlterarTema()
+    {
+        // O tema é controlado pela classe da página.
+    }
+
 }
 
 
 <style>
 
-    .configuracoes-page {
-        min-height: calc(100vh - 60px);
+    .configuracoes {
+        min-height: 100vh;
+        background: #F4F8FC;
         color: #172033;
-        transition: background 0.3s ease, color 0.3s ease;
+        padding-bottom: 40px;
+        transition: all 0.3s ease;
     }
 
-    .cabecalho {
+    .config-header {
         margin-bottom: 30px;
     }
 
-        .cabecalho h1 {
+        .config-header h1 {
             margin: 0 0 8px 0;
             color: #0878C9;
             font-size: 32px;
         }
 
-        .cabecalho p {
+        .config-header p {
             margin: 0;
             color: #687386;
             font-size: 15px;
@@ -206,37 +206,40 @@
 
     .config-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 22px;
     }
 
 
-    /* CARDS */
+    /* CARD */
 
     .config-card {
         background: white;
+        border: 1px solid #e2eaf2;
         border-radius: 16px;
         padding: 25px;
         display: flex;
         gap: 18px;
-        border: 1px solid #e2eaf2;
         box-shadow: 0 5px 18px rgba(0, 80, 140, 0.08);
-        transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        transition: all 0.3s ease;
     }
 
-    .icone-card {
+
+    /* ÍCONE */
+
+    .config-icon {
         width: 48px;
         height: 48px;
         min-width: 48px;
-        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         background: #e8f5ff;
         color: #0878C9;
+        border-radius: 12px;
     }
 
-        .icone-card svg {
+        .config-icon svg {
             width: 25px;
             height: 25px;
             fill: none;
@@ -249,44 +252,39 @@
 
     /* CONTEÚDO */
 
-    .card-conteudo {
+    .config-content {
         flex: 1;
     }
 
-        .card-conteudo h2 {
+        .config-content h2 {
             margin: 0 0 7px 0;
             color: #172033;
             font-size: 20px;
         }
 
-    .descricao {
-        margin: 0 0 20px 0;
-        color: #687386;
-        font-size: 14px;
-        line-height: 1.5;
-    }
+        .config-content > p {
+            margin: 0 0 20px 0;
+            color: #687386;
+            font-size: 14px;
+            line-height: 1.5;
+        }
 
 
     /* INFORMAÇÕES */
 
-    .informacao {
+    .info {
         display: flex;
         justify-content: space-between;
-        align-items: center;
         padding: 11px 0;
         border-bottom: 1px solid #edf1f5;
     }
 
-        .informacao:last-child {
-            border-bottom: none;
-        }
-
-        .informacao span {
+        .info span {
             color: #7b8798;
             font-size: 13px;
         }
 
-        .informacao strong {
+        .info strong {
             color: #172033;
             font-size: 14px;
         }
@@ -294,90 +292,93 @@
 
     /* MODO ESCURO */
 
-    .modo-escuro {
-        color: #f1f5f9;
+    .tema-escuro {
+        background: #080d14 !important;
+        color: white !important;
     }
 
-        .modo-escuro .cabecalho h1 {
-            color: #4B8FEF;
+        .tema-escuro .config-header h1 {
+            color: white !important;
         }
 
-        .modo-escuro .cabecalho p {
-            color: #b8c2d1;
+        .tema-escuro .config-header p {
+            color: #c4ceda !important;
         }
 
-        .modo-escuro .config-card {
-            background: #182333;
-            border-color: #2b3a4e;
+        .tema-escuro .config-card {
+            background: #151d29 !important;
+            border-color: #2b394b !important;
             box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
         }
 
-        .modo-escuro .icone-card {
-            background: #203c58;
-            color: #4B8FEF;
+        .tema-escuro .config-content h2 {
+            color: white !important;
         }
 
-        .modo-escuro .card-conteudo h2 {
-            color: #ffffff;
+        .tema-escuro .config-content > p {
+            color: #c4ceda !important;
         }
 
-        .modo-escuro .descricao {
-            color: #b8c2d1;
+        .tema-escuro .config-icon {
+            background: #20354d;
+            color: white;
         }
 
-        .modo-escuro .informacao {
-            border-color: #2b3a4e;
+        .tema-escuro .info {
+            border-color: #2b394b;
         }
 
-            .modo-escuro .informacao span {
-                color: #9eacbd;
+            .tema-escuro .info span {
+                color: #aeb9c7;
             }
 
-            .modo-escuro .informacao strong {
-                color: #ffffff;
+            .tema-escuro .info strong {
+                color: white;
             }
 
-        .modo-escuro .versao {
-            border-color: #2b3a4e;
+        .tema-escuro .dark-option {
+            background: #202b3a;
+        }
+
+            .tema-escuro .dark-option strong {
+                color: white;
+            }
+
+            .tema-escuro .dark-option small {
+                color: #b9c4d1;
+            }
+
+        .tema-escuro .system-status {
+            color: #dce3eb;
         }
 
 
-    /* SWITCH */
+    /* OPÇÃO DO MODO ESCURO */
 
-    .opcao {
+    .dark-option {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 15px;
         background: #f5f8fb;
+        padding: 15px;
         border-radius: 12px;
     }
 
-        .opcao strong {
+        .dark-option strong {
+            display: block;
             color: #172033;
             font-size: 14px;
         }
 
-        .opcao p {
-            margin: 4px 0 0 0;
+        .dark-option small {
+            display: block;
+            margin-top: 5px;
             color: #7b8798;
             font-size: 12px;
         }
 
-    .modo-escuro .opcao {
-        background: #202e40;
-    }
 
-        .modo-escuro .opcao strong {
-            color: white;
-        }
-
-        .modo-escuro .opcao p {
-            color: #aebaca;
-        }
-
-
-    /* BOTÃO SWITCH */
+    /* BOTÃO */
 
     .switch {
         position: relative;
@@ -394,14 +395,14 @@
 
     .slider {
         position: absolute;
-        cursor: pointer;
         inset: 0;
         background: #cbd5e1;
         border-radius: 30px;
+        cursor: pointer;
         transition: 0.3s;
     }
 
-        .slider:before {
+        .slider::before {
             content: "";
             position: absolute;
             width: 21px;
@@ -411,27 +412,24 @@
             background: white;
             border-radius: 50%;
             transition: 0.3s;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
     .switch input:checked + .slider {
         background: #0878C9;
     }
 
-        .switch input:checked + .slider:before {
+        .switch input:checked + .slider::before {
             transform: translateX(23px);
         }
 
 
     /* WHATSAPP */
 
-    .btn-whatsapp {
-        display: inline-flex;
-        align-items: center;
-        gap: 9px;
+    .whatsapp {
+        display: inline-block;
         padding: 12px 18px;
         background: #20a86b;
-        color: white;
+        color: white !important;
         text-decoration: none;
         border-radius: 9px;
         font-size: 14px;
@@ -439,60 +437,31 @@
         transition: 0.2s;
     }
 
-        .btn-whatsapp:hover {
+        .whatsapp:hover {
             background: #168d58;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .btn-whatsapp svg {
-            width: 20px;
-            height: 20px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.7;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-
-    /* VERSÃO */
-
-    .versao {
-        display: flex;
-        justify-content: space-between;
-        padding: 13px 0;
-        border-bottom: 1px solid #edf1f5;
-    }
-
-        .versao span {
-            color: #7b8798;
-        }
-
-        .versao strong {
-            color: #0878C9;
+            color: white !important;
         }
 
 
     /* STATUS */
 
-    .status-sistema {
-        margin-top: 16px;
+    .system-status {
         display: flex;
         align-items: center;
         gap: 8px;
+        margin-top: 20px;
         color: #687386;
         font-size: 13px;
     }
 
-    .bolinha {
-        width: 9px;
-        height: 9px;
-        background: #20a86b;
-        border-radius: 50%;
-    }
+        .system-status span {
+            width: 9px;
+            height: 9px;
+            background: #20a86b;
+            border-radius: 50%;
+        }
 
 
-   
+    
 
 </style>

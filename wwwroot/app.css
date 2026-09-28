@@ -222,3 +222,267 @@ button:disabled {
         font-size: 22px;
     }
 }
+/* =====================================================
+   MODO ESCURO GLOBAL - HEALTHFLOW
+   ===================================================== */
+
+body.dark-mode {
+    background: #080d14 !important;
+    color: #ffffff !important;
+}
+
+
+    /* Fundo principal */
+
+    body.dark-mode .conteudo {
+        background: #080d14 !important;
+        color: #ffffff !important;
+    }
+
+
+    /* Todos os textos */
+
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode h4,
+    body.dark-mode h5,
+    body.dark-mode h6,
+    body.dark-mode p,
+    body.dark-mode span,
+    body.dark-mode label,
+    body.dark-mode strong,
+    body.dark-mode td,
+    body.dark-mode th {
+        color: #ffffff !important;
+    }
+
+
+    /* Títulos que normalmente ficam azuis */
+
+    body.dark-mode h1,
+    body.dark-mode .titulo,
+    body.dark-mode .page-title {
+        color: #ffffff !important;
+    }
+
+
+    /* Cards */
+
+    body.dark-mode .card,
+    body.dark-mode .config-card,
+    body.dark-mode .dashboard-card,
+    body.dark-mode .card-conteudo {
+        background: #151d29 !important;
+        color: #ffffff !important;
+        border-color: #2a3748 !important;
+    }
+
+
+    /* Fundos brancos */
+
+    body.dark-mode .bg-white,
+    body.dark-mode .bg-light,
+    body.dark-mode .container,
+    body.dark-mode main {
+        background: #080d14 !important;
+        color: #ffffff !important;
+    }
+
+
+    /* Tabelas */
+
+    body.dark-mode table {
+        background: #151d29 !important;
+        color: #ffffff !important;
+    }
+
+
+    body.dark-mode thead {
+        background: #202d3e !important;
+        color: #ffffff !important;
+    }
+
+
+    body.dark-mode tbody {
+        background: #151d29 !important;
+        color: #ffffff !important;
+    }
+
+
+    body.dark-mode tr {
+        background: #151d29 !important;
+        color: #ffffff !important;
+        border-color: #2a3748 !important;
+    }
+
+
+    body.dark-mode td,
+    body.dark-mode th {
+        color: #ffffff !important;
+        border-color: #2a3748 !important;
+    }
+
+
+    /* Inputs */
+
+    body.dark-mode input,
+    body.dark-mode textarea,
+    body.dark-mode select {
+        background: #202b3a !important;
+        color: #ffffff !important;
+        border-color: #3a4b60 !important;
+    }
+
+
+        body.dark-mode input::placeholder,
+        body.dark-mode textarea::placeholder {
+            color: #aeb9c8 !important;
+        }
+
+
+    /* Botões */
+
+    body.dark-mode button {
+        color: #ffffff;
+    }
+
+
+    /* Links */
+
+    body.dark-mode a {
+        color: #ffffff;
+    }
+
+
+        /* Links azuis também ficam brancos */
+
+        body.dark-mode a:hover {
+            color: #ffffff !important;
+        }
+
+
+    /* Bordas */
+
+    body.dark-mode hr {
+        border-color: #2a3748 !important;
+    }
+
+
+    /* Listas */
+
+    body.dark-mode .list-group,
+    body.dark-mode .list-group-item {
+        background: #151d29 !important;
+        color: #ffffff !important;
+        border-color: #2a3748 !important;
+    }
+
+
+    /* Página de configurações */
+
+    body.dark-mode .configuracoes-page {
+        background: #080d14 !important;
+        color: #ffffff !important;
+    }
+
+
+    body.dark-mode .config-card {
+        background: #151d29 !important;
+        color: #ffffff !important;
+        border-color: #2a3748 !important;
+    }
+
+
+        body.dark-mode .config-card h2,
+        body.dark-mode .config-card p,
+        body.dark-mode .config-card span,
+        body.dark-mode .config-card strong {
+            color: #ffffff !important;
+        }
+
+
+    /* Informações dos cards */
+
+    body.dark-mode .informacao {
+        border-color: #2a3748 !important;
+    }
+
+
+        body.dark-mode .informacao span {
+            color: #c3ccd8 !important;
+        }
+
+
+        body.dark-mode .informacao strong {
+            color: #ffffff !important;
+        }
+
+
+    /* Descrição */
+
+    body.dark-mode .descricao {
+        color: #c3ccd8 !important;
+    }
+
+
+    /* Opções */
+
+    body.dark-mode .opcao {
+        background: #202b3a !important;
+        color: #ffffff !important;
+    }
+
+
+        body.dark-mode .opcao strong,
+        body.dark-mode .opcao p {
+            color: #ffffff !important;
+        }
+
+
+    /* Versão */
+
+    body.dark-mode .versao {
+        border-color: #2a3748 !important;
+    }
+
+
+        body.dark-mode .versao span,
+        body.dark-mode .versao strong {
+            color: #ffffff !important;
+        }
+
+
+    /* Status */
+
+    body.dark-mode .status-sistema {
+        color: #ffffff !important;
+    }
+
+
+    /* Dashboard */
+
+    body.dark-mode .dashboard {
+        background: #080d14 !important;
+        color: #ffffff !important;
+    }
+
+
+    /* Conteúdos que possuam fundo branco diretamente */
+
+    body.dark-mode [style*="background: white"],
+    body.dark-mode [style*="background:white"],
+    body.dark-mode [style*="background-color: white"],
+    body.dark-mode [style*="background-color:white"] {
+        background: #151d29 !important;
+        color: #ffffff !important;
+    }
+
+
+    /* Textos que tenham classes comuns */
+
+    body.dark-mode .text-dark,
+    body.dark-mode .text-black,
+    body.dark-mode .text-primary {
+        color: #ffffff !important;
+    }
