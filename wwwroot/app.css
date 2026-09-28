@@ -1,89 +1,27 @@
+/* CONFIGURAÇÕES GERAIS */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Segoe UI;
+    font-family: "Segoe UI", sans-serif;
 }
 
-
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
 
 body {
-    background: #f4f7fc;
+    background: #F4F8FC;
 }
 
 
-
-
-
-.sidebar {
-    width: 260px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 25px;
-    background: linear-gradient( 180deg, #4B83E8, #89D2FA );
-}
-
-
-
-
-
-.logo-menu {
-    margin-bottom: 40px;
-}
-
-
-
-    .logo-menu h2 {
-        color: white;
-        font-size: 30px;
-    }
-
-
-
-    .logo-menu p {
-        color: white;
-    }
-
-
-
-
-.sidebar nav {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-
-
-
-    .sidebar nav a {
-        padding: 15px;
-        border-radius: 10px;
-        text-decoration: none;
-        color: white;
-    }
-
-
-
-
-        .sidebar nav a:hover {
-            background: rgba(255,255,255,.2);
-        }
-
-
-
-
-
-.conteudo {
-    margin-left: 260px;
-    padding: 30px;
-}
-
-
-
-
+/* =========================================
+   LOGIN
+   ========================================= */
 
 .login-container {
     height: 100vh;
@@ -93,58 +31,27 @@ body {
     background: #87C6F7;
 }
 
-
-
-
 .login-card {
     width: 380px;
     padding: 40px;
     background: white;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
-
-
-
 
 .login-logo {
     width: 150px;
     margin-bottom: 20px;
 }
 
-
-
-
-.login-card input {
-    width: 100%;
-    padding: 15px;
-    margin-top: 15px;
-    border: none;
-    background: #f3f3f3;
-    border-radius: 10px;
+.logo-img {
+    max-width: 100%;
+    height: auto;
 }
-
-
-
-
-.login-card button {
-    width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    background: #4B83E8;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-    .login-card button:hover {
-        background: #3A69D1;
-    }
 
 .login-title {
-    color: #4B83E8;
+    color: #0878C9;
     font-size: 28px;
     margin-bottom: 5px;
 }
@@ -178,13 +85,37 @@ body {
 
         .form-group input:focus {
             outline: none;
-            border-color: #4B83E8;
+            border-color: #0878C9;
         }
+
+.login-card input {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: none;
+    background: #f3f3f3;
+    border-radius: 10px;
+}
+
+.login-card button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: #0878C9;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+    .login-card button:hover {
+        background: #0057A8;
+    }
 
 .btn-login {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(180deg, #4B83E8, #3A69D1);
+    background: linear-gradient( 180deg, #0878C9, #0057A8 );
     color: white;
     border: none;
     border-radius: 8px;
@@ -196,7 +127,7 @@ body {
 
     .btn-login:hover {
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(75, 131, 232, 0.4);
+        box-shadow: 0 5px 15px rgba(8, 120, 201, 0.4);
     }
 
 .login-footer {
@@ -205,110 +136,36 @@ body {
     margin-top: 20px;
 }
 
-.logo-img {
-    max-width: 100%;
-    height: auto;
-}
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 70px;
-        padding: 15px;
-    }
+/* =========================================
+   TÍTULOS E TEXTOS GERAIS
+   ========================================= */
 
-    .logo-menu h2 {
-        font-size: 18px;
-    }
-
-    .logo-menu p {
-        display: none;
-    }
-
-    .sidebar nav a {
-        padding: 12px;
-        font-size: 14px;
-    }
-
-    .conteudo {
-        margin-left: 70px;
-        padding: 20px;
-    }
-
-    .login-card {
-        width: 90%;
-        max-width: 380px;
-        padding: 30px 20px;
-    }
-
-    .page-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .btn-primary {
-        width: 100%;
-    }
-
-    table {
-        font-size: 12px;
-    }
-
-    th, td {
-        padding: 8px;
-    }
-
-    .btn-edit, .btn-delete {
-        padding: 4px 8px;
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .sidebar {
-        width: 60px;
-    }
-
-    .conteudo {
-        margin-left: 60px;
-        padding: 15px;
-    }
-
-    .login-card {
-        border-radius: 15px;
-    }
-
-    .login-title {
-        font-size: 22px;
-    }
-
-    .dashboard-cards {
-        grid-template-columns: 1fr;
-    }
-
-    table {
-        font-size: 11px;
-    }
-
-    th, td {
-        padding: 6px;
-    }
-
-    .page-header {
-        padding: 0;
-    }
-}
-
-/* Melhorias gerais */
 h1 {
-    color: #4B83E8;
+    color: #0878C9;
     margin-bottom: 20px;
     font-size: 32px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: #333;
+}
+
+
+/* =========================================
+   CAMPOS
+   ========================================= */
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #0878C9;
+    box-shadow: 0 0 0 3px rgba(8, 120, 201, 0.1);
 }
 
 button:disabled {
@@ -316,12 +173,10 @@ button:disabled {
     cursor: not-allowed;
 }
 
-input:focus, textarea:focus, select:focus {
-    outline: none;
-    border-color: #4B83E8;
-    box-shadow: 0 0 0 3px rgba(75, 131, 232, 0.1);
-}
 
+/* =========================================
+   SCROLLBAR
+   ========================================= */
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -332,10 +187,38 @@ input:focus, textarea:focus, select:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #4B83E8;
+    background: #0878C9;
     border-radius: 4px;
 }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: #3A69D1;
+        background: #0057A8;
     }
+
+
+/* =========================================
+   RESPONSIVIDADE DO LOGIN
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .login-card {
+        width: 90%;
+        max-width: 380px;
+        padding: 30px 20px;
+    }
+}
+
+
+/* CELULARES */
+
+@media (max-width: 480px) {
+
+    .login-card {
+        border-radius: 15px;
+    }
+
+    .login-title {
+        font-size: 22px;
+    }
+}

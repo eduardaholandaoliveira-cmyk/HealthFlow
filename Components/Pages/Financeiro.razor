@@ -1,0 +1,515 @@
+﻿@page "/financeiro"
+@layout MainLayout
+
+<PageTitle>Financeiro - HealthFlow</PageTitle>
+
+<div class="financeiro-page">
+
+    <div class="pagina-cabecalho">
+        <div>
+            <h1>Financeiro</h1>
+            <p>Controle dos valores recebidos pela clínica.</p>
+        </div>
+    </div>
+
+
+    <!-- RESUMO -->
+
+    <div class="resumo-financeiro">
+
+        <div class="card-financeiro">
+            <div class="icone-financeiro entrada">
+                R$
+            </div>
+
+            <div>
+                <span>Total recebido</span>
+                <h2>R$ @totalRecebido.ToString("N2")</h2>
+            </div>
+        </div>
+
+
+        <div class="card-financeiro">
+            <div class="icone-financeiro quantidade">
+                #
+            </div>
+
+            <div>
+                <span>Pagamentos registrados</span>
+                <h2>@quantidadePagamentos</h2>
+            </div>
+        </div>
+
+
+        <div class="card-financeiro">
+            <div class="icone-financeiro media">
+                R$
+            </div>
+
+            <div>
+                <span>Média por pagamento</span>
+                <h2>R$ @mediaPagamento.ToString("N2")</h2>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- LANÇAMENTO -->
+
+    <div class="card">
+
+        <div class="card-titulo">
+            <div>
+                <h2>Registrar pagamento</h2>
+                <p>Adicione um novo valor recebido pela clínica.</p>
+            </div>
+        </div>
+
+
+        <div class="form-financeiro">
+
+            <div class="campo">
+                <label>Especialidade</label>
+
+                <select @bind="especialidadeSelecionada">
+
+                    <option value="">Selecione</option>
+
+                    <option>Dermatologia</option>
+                    <option>Cardiologia</option>
+                    <option>Ortopedia</option>
+                    <option>Pediatria</option>
+                    <option>Clínico Geral</option>
+                    <option>Oftalmologia</option>
+                    <option>Neurologia</option>
+                    <option>Outra</option>
+
+                </select>
+            </div>
+
+
+            <div class="campo">
+                <label>Valor recebido</label>
+
+                <input type="number"
+                       step="0.01"
+                       min="0"
+                       @bind="valorInformado"
+                       placeholder="Ex: 250,00" />
+            </div>
+
+
+            <button class="btn-adicionar"
+                    @onclick="AdicionarPagamento">
+
+                Adicionar pagamento
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TABELA DE PAGAMENTOS -->
+
+    <div class="card">
+
+        <div class="card-titulo">
+            <div>
+                <h2>Valores por especialidade</h2>
+                <p>Veja quanto cada área recebeu.</p>
+            </div>
+        </div>
+
+
+        @if (pagamentos.Count == 0)
+        {
+            <div class="mensagem-vazia">
+                Nenhum pagamento registrado ainda.
+            </div>
+        }
+        else
+        {
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Especialidade</th>
+                            <th>Quantidade</th>
+                            <th>Total recebido</th>
+                            <th>Participação</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in pagamentos
+                            .GroupBy(x => x.Especialidade)
+                            .Select(g => new
+                            {
+                                Especialidade = g.Key,
+                                Quantidade = g.Count(),
+                                Total = g.Sum(x => x.Valor)
+                            })
+                            .OrderByDescending(x => x.Total))
+                        {
+                            var porcentagem = totalRecebido > 0
+                                ? (item.Total / totalRecebido) * 100
+                                : 0;
+
+                            <tr>
+
+                                <td>
+                                    <strong>@item.Especialidade</strong>
+                                </td>
+
+                                <td>
+                                    @item.Quantidade
+                                </td>
+
+                                <td>
+                                    R$ @item.Total.ToString("N2")
+                                </td>
+
+                                <td>
+
+                                    <div class="barra-container">
+
+                                        <div class="barra"
+                                             style="width: @porcentagem.ToString("0.##")%;">
+                                        </div>
+
+                                    </div>
+
+                                    <span class="porcentagem">
+                                        @porcentagem.ToString("0.##")%
+                                    </span>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
+@code {
+
+    private string especialidadeSelecionada = "";
+
+    private decimal valorInformado = 0;
+
+    private List<Pagamento> pagamentos = new();
+
+
+    private decimal totalRecebido =>
+        pagamentos.Sum(x => x.Valor);
+
+
+    private int quantidadePagamentos =>
+        pagamentos.Count;
+
+
+    private decimal mediaPagamento =>
+        quantidadePagamentos > 0
+            ? totalRecebido / quantidadePagamentos
+            : 0;
+
+
+    private void AdicionarPagamento()
+    {
+        if (string.IsNullOrWhiteSpace(especialidadeSelecionada))
+            return;
+
+        if (valorInformado <= 0)
+            return;
+
+
+        pagamentos.Add(new Pagamento
+        {
+            Especialidade = especialidadeSelecionada,
+            Valor = valorInformado
+        });
+
+
+        especialidadeSelecionada = "";
+
+        valorInformado = 0;
+    }
+
+
+    private class Pagamento
+    {
+        public string Especialidade { get; set; } = "";
+
+        public decimal Valor { get; set; }
+    }
+
+}
+
+
+<style>
+
+    .financeiro-page {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+
+    .pagina-cabecalho {
+        margin-bottom: 25px;
+    }
+
+
+        .pagina-cabecalho h1 {
+            margin: 0;
+            color: #0878C9;
+            font-size: 32px;
+        }
+
+
+        .pagina-cabecalho p {
+            margin-top: 5px;
+            color: #667085;
+        }
+
+
+    /* RESUMO */
+
+    .resumo-financeiro {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+
+
+    .card-financeiro {
+        background: white;
+        border-radius: 14px;
+        padding: 22px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 4px 15px rgba(0, 70, 120, 0.08);
+    }
+
+
+        .card-financeiro span {
+            color: #667085;
+            font-size: 13px;
+        }
+
+
+        .card-financeiro h2 {
+            margin-top: 5px;
+            color: #172033;
+            font-size: 22px;
+        }
+
+
+    .icone-financeiro {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        font-weight: bold;
+    }
+
+
+    .entrada {
+        background: #E4F7F0;
+        color: #16845C;
+    }
+
+
+    .quantidade {
+        background: #E5F2FC;
+        color: #0878C9;
+    }
+
+
+    .media {
+        background: #E5F7F8;
+        color: #0A9CA6;
+    }
+
+
+    /* CARDS */
+
+    .card {
+        background: white;
+        border-radius: 14px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 15px rgba(0, 70, 120, 0.08);
+    }
+
+
+    .card-titulo {
+        margin-bottom: 20px;
+    }
+
+
+        .card-titulo h2 {
+            margin: 0;
+            color: #172033;
+            font-size: 20px;
+        }
+
+
+        .card-titulo p {
+            margin-top: 5px;
+            color: #667085;
+            font-size: 14px;
+        }
+
+
+    /* FORMULÁRIO */
+
+    .form-financeiro {
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        gap: 15px;
+        align-items: end;
+    }
+
+
+    .campo {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+
+        .campo label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #344054;
+        }
+
+
+        .campo select,
+        .campo input {
+            height: 45px;
+            border: 1px solid #D0D5DD;
+            border-radius: 8px;
+            padding: 0 12px;
+            background: white;
+            color: #172033;
+        }
+
+
+            .campo select:focus,
+            .campo input:focus {
+                outline: none;
+                border-color: #0878C9;
+            }
+
+
+    .btn-adicionar {
+        height: 45px;
+        padding: 0 20px;
+        border: none;
+        border-radius: 8px;
+        background: #0878C9;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+
+        .btn-adicionar:hover {
+            background: #0057A8;
+            transform: translateY(-1px);
+        }
+
+
+    /* TABELA */
+
+    .tabela-container {
+        overflow-x: auto;
+    }
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+
+    th {
+        text-align: left;
+        padding: 14px;
+        background: #F4F8FC;
+        color: #475467;
+        font-size: 13px;
+    }
+
+
+    td {
+        padding: 16px 14px;
+        border-bottom: 1px solid #EAECF0;
+        color: #344054;
+        font-size: 14px;
+    }
+
+
+    tr:hover td {
+        background: #F8FBFE;
+    }
+
+
+    .barra-container {
+        width: 130px;
+        height: 7px;
+        display: inline-block;
+        vertical-align: middle;
+        background: #E5E7EB;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+
+    .barra {
+        height: 100%;
+        background: linear-gradient( 90deg, #0878C9, #20C4C9 );
+        border-radius: 10px;
+    }
+
+
+    .porcentagem {
+        margin-left: 8px;
+        color: #667085;
+        font-size: 12px;
+    }
+
+
+    .mensagem-vazia {
+        padding: 30px;
+        text-align: center;
+        color: #667085;
+        background: #F8FAFC;
+        border-radius: 10px;
+    }
+
+
+   
+
+</style>

@@ -2,29 +2,32 @@
 
 <div class="sidebar">
 
+    <!-- LOGO -->
     <div class="logo-menu">
 
         <div class="logo-icon">
             HF
         </div>
 
-        <div>
+        <div class="logo-text">
             <h2>HealthFlow</h2>
             <p>Sistema Clínico</p>
         </div>
 
     </div>
 
+
+    <!-- TÍTULO -->
     <div class="menu-titulo">
         MENU PRINCIPAL
     </div>
 
+
+    <!-- MENU -->
     <nav class="menu">
 
-        <NavLink href="/dashboard"
-                 class="menu-link"
-                 ActiveClass="menu-link-active">
-
+        <!-- DASHBOARD -->
+        <a href="/dashboard" class="menu-link">
             <span class="icone">
                 <svg viewBox="0 0 24 24">
                     <path d="M3 11L12 4L21 11V20C21 20.6 20.6 21 20 21H4C3.4 21 3 20.6 3 20V11Z" />
@@ -33,14 +36,11 @@
             </span>
 
             <span>Dashboard</span>
+        </a>
 
-        </NavLink>
 
-
-        <NavLink href="/pacientes"
-                 class="menu-link"
-                 ActiveClass="menu-link-active">
-
+        <!-- PACIENTES -->
+        <a href="/pacientes" class="menu-link">
             <span class="icone">
                 <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="8" r="4" />
@@ -49,14 +49,11 @@
             </span>
 
             <span>Pacientes</span>
+        </a>
 
-        </NavLink>
 
-
-        <NavLink href="/profissionais"
-                 class="menu-link"
-                 ActiveClass="menu-link-active">
-
+        <!-- PROFISSIONAIS -->
+        <a href="/profissionais" class="menu-link">
             <span class="icone">
                 <svg viewBox="0 0 24 24">
                     <circle cx="9" cy="8" r="3.5" />
@@ -67,14 +64,11 @@
             </span>
 
             <span>Profissionais</span>
+        </a>
 
-        </NavLink>
 
-
-        <NavLink href="/agendamentos"
-                 class="menu-link"
-                 ActiveClass="menu-link-active">
-
+        <!-- AGENDAMENTOS -->
+        <a href="/agendamentos" class="menu-link">
             <span class="icone">
                 <svg viewBox="0 0 24 24">
                     <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -88,55 +82,68 @@
             </span>
 
             <span>Agendamentos</span>
+        </a>
 
-        </NavLink>
 
-
-        <NavLink href="/financeiro"
-                 class="menu-link"
-                 ActiveClass="menu-link-active">
-
+        <!-- FINANCEIRO -->
+        <a href="/financeiro" class="menu-link">
             <span class="icone">
                 <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="8.5" />
-                    <path d="M12 7V17" />
-                    <path d="M15 9.5C14.5 8.5 13.5 8 12 8C10.3 8 9 9 9 10.5C9 12 10.2 12.5 12 13C13.8 13.5 15 14 15 15.5C15 17 13.7 18 12 18C10.5 18 9.4 17.5 9 16.5" />
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 10H21" />
+                    <path d="M7 15H10" />
                 </svg>
             </span>
 
             <span>Financeiro</span>
+        </a>
 
-        </NavLink>
 
-
-        <NavLink href="/configuracoes"
-                 class="menu-link"
-                 ActiveClass="menu-link-active">
-
+        <!-- CONFIGURAÇÕES -->
+        <a href="/configuracoes" class="menu-link">
             <span class="icone">
                 <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="3" />
-                    <path d="M19.4 15A1.7 1.7 0 0 0 19.7 17L18 18.7A1.7 1.7 0 0 0 16 19L15.2 21H8.8L8 19A1.7 1.7 0 0 0 6 18.7L4.3 17A1.7 1.7 0 0 0 4.6 15L3.5 12L4.6 9A1.7 1.7 0 0 0 4.3 7L6 5.3A1.7 1.7 0 0 0 8 5L8.8 3H15.2L16 5A1.7 1.7 0 0 0 18 5.3L19.7 7A1.7 1.7 0 0 0 19.4 9L20.5 12Z" />
+
+                    <path d="M19.4 15A1.7 1.7 0 0 0 19.7 17" />
+                    <path d="M20 17.3L17.3 20" />
+                    <path d="M17 19.7A1.7 1.7 0 0 0 15 19.4" />
+                    <path d="M14 21V21.3" />
+                    <path d="M10 21V21.3" />
+                    <path d="M9 19.4A1.7 1.7 0 0 0 7 19.7" />
+                    <path d="M6.7 20L4 17.3" />
+                    <path d="M4.3 17A1.7 1.7 0 0 0 4.6 15" />
+                    <path d="M3 14H2.7" />
+                    <path d="M3 10H2.7" />
+                    <path d="M4.6 9A1.7 1.7 0 0 0 4.3 7" />
+                    <path d="M4 6.7L6.7 4" />
+                    <path d="M7 4.3A1.7 1.7 0 0 0 9 4.6" />
+                    <path d="M10 3V2.7" />
+                    <path d="M14 3V2.7" />
+                    <path d="M15 4.6A1.7 1.7 0 0 0 17 4.3" />
+                    <path d="M17.3 4L20 6.7" />
+                    <path d="M19.7 7A1.7 1.7 0 0 0 19.4 9" />
+                    <path d="M21 10H21.3" />
+                    <path d="M21 14H21.3" />
                 </svg>
             </span>
 
             <span>Configurações</span>
-
-        </NavLink>
+        </a>
 
     </nav>
 
 
+    <!-- ÁREA INFERIOR -->
     <div class="menu-final">
 
-        <a href="/"
-           class="btn-sair">
+        <a href="/" class="btn-sair">
 
             <span class="icone">
                 <svg viewBox="0 0 24 24">
                     <path d="M10 17L15 12L10 7" />
                     <path d="M15 12H3" />
-                    <path d="M20 4V20C20 20.6 19.6 21 19 21H14" />
+                    <path d="M21 4V20" />
                 </svg>
             </span>
 
@@ -148,226 +155,202 @@
 
 </div>
 
+
 <style>
+
+    /* ==============================
+           SIDEBAR
+           ============================== */
 
     .sidebar {
         width: 250px;
-        min-height: 100vh;
-
+        height: 100vh;
         position: fixed;
-        left: 0;
         top: 0;
-
+        left: 0;
+        z-index: 1000;
         display: flex;
         flex-direction: column;
-
-        background: linear-gradient(
-            180deg,
-            #0878C9 0%,
-            #0A9CA6 100%
-        );
-
+        background: linear-gradient( 180deg, #0878C9 0%, #0A9CA6 100% );
         color: white;
-
         padding: 25px 15px;
-
         box-sizing: border-box;
-
-        box-shadow: 3px 0 15px rgba(0, 60, 120, 0.15);
+        box-shadow: 3px 0 15px rgba(0, 60, 120, 0.18);
     }
 
 
-    /* Logo */
+    /* ==============================
+           LOGO
+           ============================== */
 
     .logo-menu {
         display: flex;
         align-items: center;
-
         gap: 12px;
-
-        padding: 5px 10px 30px;
-
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 5px 8px 25px 8px;
     }
-
 
     .logo-icon {
         width: 45px;
         height: 45px;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
         background: white;
-
         color: #0878C9;
-
         border-radius: 12px;
-
-        font-size: 15px;
-        font-weight: bold;
-
+        font-size: 17px;
+        font-weight: 700;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     }
 
-
-    .logo-menu h2 {
+    .logo-text h2 {
         margin: 0;
-
-        font-size: 23px;
-
         color: white;
+        font-size: 20px;
+        font-weight: 700;
+    }
 
-        letter-spacing: 0.3px;
+    .logo-text p {
+        margin: 3px 0 0 0;
+        color: white;
+        font-size: 11px;
+        opacity: 0.85;
     }
 
 
-    .logo-menu p {
-        margin: 3px 0 0;
-
-        font-size: 12px;
-
-        color: rgba(255, 255, 255, 0.85);
-    }
-
-
-    /* Título do menu */
+    /* ==============================
+           TÍTULO DO MENU
+           ============================== */
 
     .menu-titulo {
+        padding: 10px;
+        color: white;
         font-size: 10px;
-
-        font-weight: 600;
-
+        font-weight: 700;
         letter-spacing: 1px;
-
-        color: rgba(255, 255, 255, 0.65);
-
-        margin: 28px 12px 10px;
+        opacity: 0.75;
     }
 
 
-    /* Menu */
+    /* ==============================
+           MENU
+           ============================== */
 
     .menu {
         display: flex;
-
         flex-direction: column;
-
         gap: 6px;
+        margin-top: 5px;
     }
 
+
+    /* ==============================
+           LINKS
+           ============================== */
 
     .menu-link {
         display: flex;
-
         align-items: center;
-
         gap: 13px;
-
-        padding: 12px 14px;
-
-        color: rgba(255, 255, 255, 0.9);
-
+        width: 100%;
+        padding: 13px 14px;
+        box-sizing: border-box;
+        color: white;
         text-decoration: none;
-
-        border-radius: 9px;
-
+        border-radius: 10px;
         font-size: 14px;
-
-        transition: all 0.2s ease;
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+        z-index: 1001;
+        transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
 
-    .menu-link:hover {
-        background: rgba(255, 255, 255, 0.15);
+        /* PASSAR O MOUSE */
 
-        color: white;
-
-        transform: translateX(3px);
-    }
-
-
-    .menu-link-active {
-        background: rgba(255, 255, 255, 0.25);
-
-        color: white;
-
-        font-weight: 600;
-
-        box-shadow: inset 3px 0 0 white;
-    }
+        .menu-link:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: white;
+            transform: translateX(4px);
+        }
 
 
-    /* Ícones */
+        /* QUANDO O LINK É CLICADO */
+
+        .menu-link:active {
+            transform: translateX(2px);
+        }
+
+
+    /* ==============================
+           ÍCONES
+           ============================== */
 
     .icone {
-        width: 21px;
-        height: 21px;
-
+        width: 22px;
+        height: 22px;
         display: flex;
-
         align-items: center;
         justify-content: center;
-
         flex-shrink: 0;
     }
 
-
-    .icone svg {
-        width: 19px;
-        height: 19px;
-
-        fill: none;
-
-        stroke: currentColor;
-
-        stroke-width: 1.8;
-
-        stroke-linecap: round;
-
-        stroke-linejoin: round;
-    }
+        .icone svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
 
 
-    /* Área inferior */
+    /* ==============================
+           PARTE INFERIOR
+           ============================== */
 
     .menu-final {
         margin-top: auto;
-
         padding-top: 20px;
-
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
     }
 
+
+    /* ==============================
+           BOTÃO SAIR
+           ============================== */
 
     .btn-sair {
         display: flex;
-
         align-items: center;
-
         gap: 13px;
-
-        padding: 12px 14px;
-
+        padding: 13px 14px;
         color: white;
-
         text-decoration: none;
-
-        border-radius: 9px;
-
+        border-radius: 10px;
         font-size: 14px;
-
-        transition: all 0.2s ease;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
     }
 
+        .btn-sair:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: white;
+            transform: translateX(4px);
+        }
 
-    .btn-sair:hover {
-        background: rgba(255, 255, 255, 0.15);
 
-        transform: translateX(3px);
-    }
+        /* ==============================
+           CONTEÚDO DOS LINKS
+           ============================== */
 
+        .menu-link span:last-child,
+        .btn-sair span:last-child {
+            white-space: nowrap;
+        }
 
-   
 </style>
