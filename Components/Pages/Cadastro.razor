@@ -1,0 +1,337 @@
+﻿@page "/cadastro"
+@layout EmptyLayout
+
+@using HealthFlow.DAO
+@using HealthFlow.Models
+
+@inject UsuarioDAO UsuarioDAO
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+<div class="cadastro-container">
+
+    <div class="cadastro-card">
+
+        <div class="cadastro-logo">
+            <img src="imagens/foto de healtflow.jpeg"
+                 alt="HealthFlow"
+                 class="logo-img" />
+        </div>
+
+        <h1>HealthFlow</h1>
+
+        <p class="cadastro-subtitulo">
+            Crie sua conta
+        </p>
+
+        <div class="form-group">
+
+            <label for="nome">Nome</label>
+
+            <input type="text"
+                   id="nome"
+                   class="form-control"
+                   @bind="nome"
+                   placeholder="Digite seu nome" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="email">E-mail</label>
+
+            <input type="email"
+                   id="email"
+                   class="form-control"
+                   @bind="email"
+                   placeholder="Digite seu e-mail" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="senha">Senha</label>
+
+            <input type="password"
+                   id="senha"
+                   class="form-control"
+                   @bind="senha"
+                   placeholder="Digite sua senha" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="confirmarSenha">Confirmar senha</label>
+
+            <input type="password"
+                   id="confirmarSenha"
+                   class="form-control"
+                   @bind="confirmarSenha"
+                   placeholder="Digite a senha novamente" />
+
+        </div>
+
+        @if (!string.IsNullOrEmpty(mensagem))
+        {
+            <div class="@classeMensagem">
+                @mensagem
+            </div>
+        }
+
+        <button type="button"
+                class="btn-cadastrar"
+                @onclick="Cadastrar"
+                disabled="@carregando">
+
+            @if (carregando)
+            {
+                <span>Cadastrando...</span>
+            }
+            else
+            {
+                <span>Criar conta</span>
+            }
+
+        </button>
+
+        <button type="button"
+                class="btn-voltar"
+                @onclick="VoltarLogin">
+
+            Voltar para o login
+
+        </button>
+
+    </div>
+
+</div>
+
+@code {
+
+    private string nome = "";
+    private string email = "";
+    private string senha = "";
+    private string confirmarSenha = "";
+
+    private string mensagem = "";
+    private string classeMensagem = "";
+
+    private bool carregando = false;
+
+    private void Cadastrar()
+    {
+        mensagem = "";
+        classeMensagem = "";
+
+        if (string.IsNullOrWhiteSpace(nome) ||
+            string.IsNullOrWhiteSpace(email) ||
+            string.IsNullOrWhiteSpace(senha) ||
+            string.IsNullOrWhiteSpace(confirmarSenha))
+        {
+            mensagem = "Preencha todos os campos.";
+            classeMensagem = "mensagem-erro";
+            return;
+        }
+
+        if (senha != confirmarSenha)
+        {
+            mensagem = "As senhas não são iguais.";
+            classeMensagem = "mensagem-erro";
+            return;
+        }
+
+        if (senha.Length < 4)
+        {
+            mensagem = "A senha deve ter pelo menos 4 caracteres.";
+            classeMensagem = "mensagem-erro";
+            return;
+        }
+
+        carregando = true;
+
+        try
+        {
+            bool cadastrado = UsuarioDAO.Cadastrar(
+                nome,
+                email,
+                senha
+            );
+
+            if (cadastrado)
+            {
+                mensagem = "Cadastro realizado com sucesso!";
+                classeMensagem = "mensagem-sucesso";
+
+                nome = "";
+                email = "";
+                senha = "";
+                confirmarSenha = "";
+            }
+            else
+            {
+                mensagem = "Este e-mail já está cadastrado.";
+                classeMensagem = "mensagem-erro";
+            }
+        }
+        catch (Exception ex)
+        {
+            mensagem = "Erro ao realizar cadastro: " + ex.Message;
+            classeMensagem = "mensagem-erro";
+        }
+        finally
+        {
+            carregando = false;
+        }
+    }
+
+    private void VoltarLogin()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
+}
+
+<style>
+
+    .cadastro-container {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient( 135deg, #0057A8, #0878C9, #0A9CA6 );
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .cadastro-card {
+        width: 100%;
+        max-width: 430px;
+        background: #ffffff;
+        padding: 35px;
+        border-radius: 16px;
+        box-shadow: 0 10px 35px rgba(0, 60, 120, 0.25);
+        box-sizing: border-box;
+    }
+
+    .cadastro-logo {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .logo-img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        border-radius: 50%;
+        background: #ffffff;
+    }
+
+    .cadastro-card h1 {
+        text-align: center;
+        color: #0878C9;
+        margin: 0 0 5px 0;
+        font-size: 30px;
+    }
+
+    .cadastro-subtitulo {
+        text-align: center;
+        color: #172033;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+        .form-group label {
+            display: block;
+            color: #172033;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #B8C9D9;
+        border-radius: 7px;
+        background: #F4F8FC;
+        color: #172033;
+        box-sizing: border-box;
+        font-size: 14px;
+        transition: 0.2s;
+    }
+
+        .form-control::placeholder {
+            color: #7B8794;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #0878C9;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(8, 120, 201, 0.12);
+        }
+
+    .btn-cadastrar {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 7px;
+        background: #0878C9;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        .btn-cadastrar:hover {
+            background: #0057A8;
+        }
+
+        .btn-cadastrar:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+    .btn-voltar {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #0878C9;
+        border-radius: 7px;
+        background: transparent;
+        color: #0878C9;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 12px;
+        transition: 0.2s;
+    }
+
+        .btn-voltar:hover {
+            background: #0878C9;
+            color: white;
+        }
+
+    .mensagem-sucesso {
+        background: #DFF5E8;
+        color: #176B3A;
+        padding: 10px;
+        border-radius: 7px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .mensagem-erro {
+        background: #FDE4E4;
+        color: #9B2929;
+        padding: 10px;
+        border-radius: 7px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+</style>
