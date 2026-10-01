@@ -40,5 +40,66 @@ namespace HealthFlow.DAO
 
             return lista;
         }
+
+        public void Inserir(PacienteModel paciente)
+        {
+            using var con = _conexao.GetConnection();
+
+            string sql = @"
+                INSERT INTO Paciente
+                (
+                    id_paciente,
+                    nome_paciente,
+                    cpf,
+                    data_nascimento,
+                    sexo,
+                    email,
+                    telefone,
+                    endereco
+                )
+                VALUES
+                (
+                    @id,
+                    @nome,
+                    @cpf,
+                    @data,
+                    @sexo,
+                    @email,
+                    @telefone,
+                    @endereco
+                )";
+
+            using var comando = con.CreateCommand();
+
+            comando.CommandText = sql;
+
+            comando.Parameters.AddWithValue("@id", ObterProximoId());
+            comando.Parameters.AddWithValue("@nome", paciente.NomePaciente);
+            comando.Parameters.AddWithValue("@cpf", paciente.Cpf);
+            comando.Parameters.AddWithValue(
+                "@data",
+                paciente.DataNascimento!.Value
+            );
+            comando.Parameters.AddWithValue("@sexo", paciente.Sexo);
+            comando.Parameters.AddWithValue("@email", paciente.Email);
+            comando.Parameters.AddWithValue("@telefone", paciente.Telefone);
+            comando.Parameters.AddWithValue("@endereco", paciente.Endereco);
+
+            comando.ExecuteNonQuery();
+        }
+
+        private int ObterProximoId()
+        {
+            using var con = _conexao.GetConnection();
+            using var comando = con.CreateCommand();
+
+            comando.CommandText = @"
+                SELECT COALESCE(MAX(id_paciente), 0) + 1
+                FROM Paciente";
+
+            return Convert.ToInt32(
+                comando.ExecuteScalar()
+            );
+        }
     }
 }
