@@ -1,0 +1,93 @@
+﻿@page "/pacientes/cadastro"
+
+@using HealthFlow.DAO
+@using HealthFlow.Models
+
+@inject PacienteDAO PacienteDAO
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+<PageTitle>Cadastro de Paciente</PageTitle>
+
+<h1>Cadastro de Paciente</h1>
+
+<div class="form-group">
+    <label>Nome:</label>
+    <input type="text"
+           class="form-control"
+           @bind="paciente.NomePaciente" />
+</div>
+
+<div class="form-group">
+    <label>CPF:</label>
+    <input type="text"
+           class="form-control"
+           @bind="paciente.Cpf" />
+</div>
+
+<div class="form-group">
+    <label>Data de nascimento:</label>
+    <input type="date"
+           class="form-control"
+           @bind="paciente.DataNascimento" />
+</div>
+
+<div class="form-group">
+    <label>Sexo:</label>
+
+    <select class="form-control"
+            @bind="paciente.Sexo">
+
+        <option value="">Selecione</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Feminino">Feminino</option>
+        <option value="Outro">Outro</option>
+
+    </select>
+</div>
+
+<div class="form-group">
+    <label>E-mail:</label>
+    <input type="email"
+           class="form-control"
+           @bind="paciente.Email" />
+</div>
+
+<div class="form-group">
+    <label>Telefone:</label>
+    <input type="text"
+           class="form-control"
+           @bind="paciente.Telefone" />
+</div>
+
+<div class="form-group">
+    <label>Endereço:</label>
+    <input type="text"
+           class="form-control"
+           @bind="paciente.Endereco" />
+</div>
+
+<br />
+
+<button class="btn btn-primary"
+        @onclick="Salvar">
+    Salvar
+</button>
+
+<a href="/pacientes" class="btn btn-secondary">
+    Cancelar
+</a>
+
+@code {
+
+    private PacienteModel paciente = new PacienteModel();
+
+    private void Salvar()
+    {
+        PacienteDAO.Inserir(paciente);
+
+        NavigationManager.NavigateTo("/pacientes");
+    }
+
+}
