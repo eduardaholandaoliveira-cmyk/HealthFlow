@@ -21,6 +21,8 @@ builder.Services.AddScoped<ProfissionalDAO>();
 
 builder.Services.AddScoped<AgendamentoDAO>();
 
+builder.Services.AddScoped<FinanceiroDAO>();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
