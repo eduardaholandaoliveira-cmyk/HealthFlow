@@ -1,4 +1,4 @@
-﻿@page "/pacientes"
+﻿@page "/agendamentos"
 
 @rendermode InteractiveServer
 
@@ -7,25 +7,25 @@
 @using HealthFlow.DAO
 @using HealthFlow.Models
 
-@inject PacienteDAO PacienteDAO
+@inject AgendamentoDAO AgendamentoDAO
 @inject NavigationManager NavigationManager
 
-<PageTitle>Pacientes - HealthFlow</PageTitle>
+<PageTitle>Agendamentos - HealthFlow</PageTitle>
 
-<div class="pacientes-page">
+<div class="agendamentos-page">
 
     <div class="cabecalho">
 
         <div>
-            <h1>Pacientes</h1>
+            <h1>Agendamentos</h1>
 
             <p>
-                Gerencie os pacientes cadastrados na clínica.
+                Gerencie os agendamentos da clínica.
             </p>
         </div>
 
-        <a href="/pacientes/cadastro" class="botao-novo">
-            + Novo Paciente
+        <a href="/agendamentos/cadastro" class="botao-novo">
+            + Novo Agendamento
         </a>
 
     </div>
@@ -42,21 +42,21 @@
         @if (carregando)
         {
             <div class="carregando">
-                Carregando pacientes...
+                Carregando agendamentos...
             </div>
         }
-        else if (pacientes.Count == 0)
+        else if (agendamentos.Count == 0)
         {
             <div class="vazio">
 
-                <h3>Nenhum paciente cadastrado</h3>
+                <h3>Nenhum agendamento cadastrado</h3>
 
                 <p>
-                    Ainda não existem pacientes cadastrados no sistema.
+                    Ainda não existem agendamentos cadastrados no sistema.
                 </p>
 
-                <a href="/pacientes/cadastro" class="botao-cadastrar">
-                    Cadastrar primeiro paciente
+                <a href="/agendamentos/cadastro" class="botao-cadastrar">
+                    Cadastrar primeiro agendamento
                 </a>
 
             </div>
@@ -68,66 +68,73 @@
                 <table>
 
                     <thead>
+
                         <tr>
                             <th>ID</th>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Data de nascimento</th>
-                            <th>Sexo</th>
-                            <th>E-mail</th>
-                            <th>Telefone</th>
+                            <th>Paciente</th>
+                            <th>Profissional</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Motivo</th>
+                            <th>Status</th>
                             <th>Ações</th>
                         </tr>
+
                     </thead>
 
                     <tbody>
 
-                        @foreach (var paciente in pacientes)
+                        @foreach (var agendamento in agendamentos)
                         {
                             <tr>
 
                                 <td>
-                                    @paciente.IdPaciente
+                                    @agendamento.IdAgendamento
                                 </td>
 
                                 <td>
-                                    @paciente.NomePaciente
+                                    @agendamento.NomePaciente
                                 </td>
 
                                 <td>
-                                    @paciente.Cpf
+                                    @agendamento.NomeProfissional
                                 </td>
 
                                 <td>
-                                    @if (paciente.DataNascimento.HasValue)
+                                    @if (agendamento.DataAgendamento.HasValue)
                                     {
-                                        @paciente.DataNascimento.Value.ToString("dd/MM/yyyy")
+                                        @agendamento.DataAgendamento.Value.ToString("dd/MM/yyyy")
                                     }
                                 </td>
 
                                 <td>
-                                    @paciente.Sexo
+                                    @if (agendamento.HoraAgendamento.HasValue)
+                                    {
+                                        @agendamento.HoraAgendamento.Value.ToString(@"hh\:mm")
+                                    }
                                 </td>
 
                                 <td>
-                                    @paciente.Email
+                                    @agendamento.Motivo
                                 </td>
 
                                 <td>
-                                    @paciente.Telefone
+                                    <span class="status">
+                                        @agendamento.Status
+                                    </span>
                                 </td>
 
                                 <td>
 
                                     <button type="button"
                                             class="botao-editar"
-                                            @onclick="() => EditarPaciente(paciente.IdPaciente)">
+                                            @onclick="() => EditarAgendamento(agendamento.IdAgendamento)">
                                         Editar
                                     </button>
 
                                     <button type="button"
                                             class="botao-excluir"
-                                            @onclick="() => ExcluirPaciente(paciente.IdPaciente)">
+                                            @onclick="() => ExcluirAgendamento(agendamento.IdAgendamento)">
                                         Deletar
                                     </button>
 
@@ -149,7 +156,7 @@
 
 <style>
 
-    .pacientes-page {
+    .agendamentos-page {
         width: 100%;
     }
 
@@ -199,7 +206,7 @@
     table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 1000px;
+        min-width: 1100px;
     }
 
     th {
@@ -219,6 +226,15 @@
 
     tr:hover {
         background: #f9fbfd;
+    }
+
+    .status {
+        background: #e8f4ff;
+        color: #0878C9;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 13px;
+        font-weight: 600;
     }
 
     .botao-editar {
@@ -299,7 +315,7 @@
 
 @code {
 
-    private List<PacienteModel> pacientes = new();
+    private List<AgendamentoModel> agendamentos = new();
 
     private bool carregando = true;
 
@@ -309,18 +325,18 @@
 
     protected override void OnInitialized()
     {
-        CarregarPacientes();
+        CarregarAgendamentos();
     }
 
-    private void CarregarPacientes()
+    private void CarregarAgendamentos()
     {
         try
         {
-            pacientes = PacienteDAO.Listar();
+            agendamentos = AgendamentoDAO.Listar();
         }
         catch (Exception ex)
         {
-            mensagem = "Erro ao carregar pacientes: " + ex.Message;
+            mensagem = "Erro ao carregar agendamentos: " + ex.Message;
             classeMensagem = "mensagem-erro";
         }
         finally
@@ -329,22 +345,22 @@
         }
     }
 
-    private void EditarPaciente(int id)
+    private void EditarAgendamento(int id)
     {
         mensagem = "A função de editar ainda será implementada.";
         classeMensagem = "mensagem-erro";
     }
 
-    private void ExcluirPaciente(int id)
+    private void ExcluirAgendamento(int id)
     {
         mensagem = "";
         classeMensagem = "";
 
         try
         {
-            string resultado = PacienteDAO.Excluir(id);
+            string resultado = AgendamentoDAO.Excluir(id);
 
-            if (resultado == "Paciente excluído com sucesso!")
+            if (resultado == "Agendamento excluído com sucesso!")
             {
                 mensagem = resultado;
                 classeMensagem = "mensagem-sucesso";
@@ -355,13 +371,12 @@
                 classeMensagem = "mensagem-erro";
             }
 
-            CarregarPacientes();
+            CarregarAgendamentos();
         }
         catch (Exception ex)
         {
-            mensagem = "Erro ao excluir paciente: " + ex.Message;
+            mensagem = "Erro ao excluir agendamento: " + ex.Message;
             classeMensagem = "mensagem-erro";
         }
     }
-
 }

@@ -1,25 +1,24 @@
-﻿@page "/agendamentos/cadastro"
+﻿@page "/profissionais/cadastro"
 
 @rendermode InteractiveServer
 
 @using HealthFlow.DAO
 @using HealthFlow.Models
 
-@inject AgendamentoDAO AgendamentoDAO
-@inject PacienteDAO PacienteDAO
 @inject ProfissionalDAO ProfissionalDAO
+@inject EspecialidadeDAO EspecialidadeDAO
 @inject NavigationManager NavigationManager
 
-<PageTitle>Cadastro de Agendamento - HealthFlow</PageTitle>
+<PageTitle>Cadastro de Profissional - HealthFlow</PageTitle>
 
-<div class="cadastro-container">
+<div class="cadastro-page">
 
     <div class="cadastro-card">
 
-        <h1>Cadastro de Agendamento</h1>
+        <h1>Cadastro de Profissional</h1>
 
         <p class="subtitulo">
-            Preencha os dados do agendamento
+            Preencha os dados do profissional.
         </p>
 
         @if (!string.IsNullOrEmpty(mensagem))
@@ -31,105 +30,76 @@
 
         <div class="form-group">
 
-            <label>Paciente:</label>
-
-            <select class="form-control"
-                    @bind="agendamento.IdPaciente">
-
-                <option value="0">
-                    Selecione o paciente
-                </option>
-
-                @foreach (var paciente in pacientes)
-                {
-                    <option value="@paciente.IdPaciente">
-                        @paciente.NomePaciente
-                    </option>
-                }
-
-            </select>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Profissional:</label>
-
-            <select class="form-control"
-                    @bind="agendamento.IdProfissional">
-
-                <option value="0">
-                    Selecione o profissional
-                </option>
-
-                @foreach (var profissional in profissionais)
-                {
-                    <option value="@profissional.IdProfissional">
-                        @profissional.NomeProfissional
-                    </option>
-                }
-
-            </select>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Data do agendamento:</label>
-
-            <input type="date"
-                   class="form-control"
-                   @bind="agendamento.DataAgendamento" />
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Hora do agendamento:</label>
-
-            <input type="time"
-                   class="form-control"
-                   @bind="agendamento.HoraAgendamento" />
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Motivo:</label>
+            <label>Nome:</label>
 
             <input type="text"
                    class="form-control"
-                   @bind="agendamento.Motivo"
-                   placeholder="Motivo da consulta" />
+                   @bind="profissional.NomeProfissional"
+                   placeholder="Nome completo" />
 
         </div>
 
         <div class="form-group">
 
-            <label>Status:</label>
+            <label>CPF:</label>
+
+            <input type="text"
+                   class="form-control"
+                   @bind="profissional.Cpf"
+                   placeholder="000.000.000-00" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label>CRM:</label>
+
+            <input type="text"
+                   class="form-control"
+                   @bind="profissional.Crm"
+                   placeholder="Número do CRM" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label>E-mail:</label>
+
+            <input type="email"
+                   class="form-control"
+                   @bind="profissional.Email"
+                   placeholder="email@exemplo.com" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Telefone:</label>
+
+            <input type="text"
+                   class="form-control"
+                   @bind="profissional.Telefone"
+                   placeholder="(00) 00000-0000" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Especialidade:</label>
 
             <select class="form-control"
-                    @bind="agendamento.Status">
+                    @bind="profissional.IdEspecialidade">
 
-                <option value="">
-                    Selecione o status
+                <option value="0">
+                    Selecione uma especialidade
                 </option>
 
-                <option value="Agendado">
-                    Agendado
-                </option>
-
-                <option value="Confirmado">
-                    Confirmado
-                </option>
-
-                <option value="Concluído">
-                    Concluído
-                </option>
-
-                <option value="Cancelado">
-                    Cancelado
-                </option>
+                @foreach (var especialidade in especialidades)
+                {
+                    <option value="@especialidade.IdEspecialidade">
+                        @especialidade.NomeEspecialidade
+                    </option>
+                }
 
             </select>
 
@@ -148,7 +118,7 @@
                 }
                 else
                 {
-                    <span>Cadastrar Agendamento</span>
+                    <span>Cadastrar Profissional</span>
                 }
 
             </button>
@@ -169,7 +139,7 @@
 
 <style>
 
-    .cadastro-container {
+    .cadastro-page {
         display: flex;
         justify-content: center;
         padding: 20px;
@@ -187,12 +157,10 @@
         .cadastro-card h1 {
             margin: 0;
             color: #172033;
-            font-size: 28px;
         }
 
     .subtitulo {
         color: #6b7280;
-        margin-top: 8px;
         margin-bottom: 25px;
     }
 
@@ -203,24 +171,22 @@
         .form-group label {
             display: block;
             margin-bottom: 7px;
-            color: #172033;
             font-weight: 600;
+            color: #172033;
         }
 
     .form-control {
         width: 100%;
-        padding: 11px 12px;
+        box-sizing: border-box;
+        padding: 11px;
         border: 1px solid #d1d5db;
         border-radius: 6px;
-        font-size: 15px;
-        box-sizing: border-box;
-        background: white;
+        font-size: 14px;
     }
 
         .form-control:focus {
             outline: none;
             border-color: #0878C9;
-            box-shadow: 0 0 0 2px rgba(8, 120, 201, 0.1);
         }
 
     .botoes {
@@ -233,7 +199,7 @@
         background: #0878C9;
         color: white;
         border: none;
-        padding: 12px 20px;
+        padding: 11px 20px;
         border-radius: 6px;
         cursor: pointer;
         font-weight: 600;
@@ -244,15 +210,15 @@
         }
 
         .btn-salvar:disabled {
-            opacity: 0.6;
+            opacity: 0.7;
             cursor: not-allowed;
         }
 
     .btn-cancelar {
         background: #e5e7eb;
-        color: #374151;
+        color: #172033;
         border: none;
-        padding: 12px 20px;
+        padding: 11px 20px;
         border-radius: 6px;
         cursor: pointer;
         font-weight: 600;
@@ -265,7 +231,7 @@
     .mensagem-sucesso {
         background: #d4edda;
         color: #155724;
-        padding: 12px 15px;
+        padding: 12px;
         border-radius: 6px;
         margin-bottom: 20px;
     }
@@ -273,7 +239,7 @@
     .mensagem-erro {
         background: #f8d7da;
         color: #721c24;
-        padding: 12px 15px;
+        padding: 12px;
         border-radius: 6px;
         margin-bottom: 20px;
     }
@@ -282,11 +248,9 @@
 
 @code {
 
-    private AgendamentoModel agendamento = new();
+    private ProfissionalModel profissional = new();
 
-    private List<PacienteModel> pacientes = new();
-
-    private List<ProfissionalModel> profissionais = new();
+    private List<EspecialidadeModel> especialidades = new();
 
     private string mensagem = "";
 
@@ -298,14 +262,11 @@
     {
         try
         {
-            pacientes = PacienteDAO.Listar();
-
-            profissionais = ProfissionalDAO.Listar();
+            especialidades = EspecialidadeDAO.Listar();
         }
         catch (Exception ex)
         {
-            mensagem = "Erro ao carregar os dados: " + ex.Message;
-
+            mensagem = "Erro ao carregar especialidades: " + ex.Message;
             classeMensagem = "mensagem-erro";
         }
     }
@@ -313,20 +274,17 @@
     private void Salvar()
     {
         mensagem = "";
-
         classeMensagem = "";
 
-        if (agendamento.IdPaciente <= 0 ||
-            agendamento.IdProfissional <= 0 ||
-            agendamento.DataAgendamento == null ||
-            agendamento.HoraAgendamento == null ||
-            string.IsNullOrWhiteSpace(agendamento.Motivo) ||
-            string.IsNullOrWhiteSpace(agendamento.Status))
+        if (string.IsNullOrWhiteSpace(profissional.NomeProfissional) ||
+            string.IsNullOrWhiteSpace(profissional.Cpf) ||
+            string.IsNullOrWhiteSpace(profissional.Crm) ||
+            string.IsNullOrWhiteSpace(profissional.Email) ||
+            string.IsNullOrWhiteSpace(profissional.Telefone) ||
+            profissional.IdEspecialidade == 0)
         {
-            mensagem = "Preencha todos os campos obrigatórios.";
-
+            mensagem = "Preencha todos os campos.";
             classeMensagem = "mensagem-erro";
-
             return;
         }
 
@@ -334,14 +292,13 @@
 
         try
         {
-            AgendamentoDAO.Inserir(agendamento);
+            ProfissionalDAO.Inserir(profissional);
 
-            NavigationManager.NavigateTo("/agendamentos");
+            NavigationManager.NavigateTo("/profissionais");
         }
         catch (Exception ex)
         {
-            mensagem = "Erro ao cadastrar agendamento: " + ex.Message;
-
+            mensagem = "Erro ao cadastrar profissional: " + ex.Message;
             classeMensagem = "mensagem-erro";
         }
         finally
@@ -352,6 +309,7 @@
 
     private void Cancelar()
     {
-        NavigationManager.NavigateTo("/agendamentos");
+        NavigationManager.NavigateTo("/profissionais");
     }
+
 }

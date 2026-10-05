@@ -19,7 +19,13 @@ namespace HealthFlow.DAO
             using var con = _conexao.GetConnection();
             using var comando = con.CreateCommand();
 
-            comando.CommandText = "SELECT * FROM Especialidade";
+            comando.CommandText = @"
+                SELECT
+                    id_especialidade,
+                    nome_especialidade,
+                    descricao
+                FROM Especialidade
+                ORDER BY nome_especialidade";
 
             using var leitor = comando.ExecuteReader();
 
@@ -29,7 +35,9 @@ namespace HealthFlow.DAO
                 {
                     IdEspecialidade = leitor.GetInt32("id_especialidade"),
                     NomeEspecialidade = leitor.GetString("nome_especialidade"),
-                    Descricao = leitor.GetString("descricao")
+                    Descricao = leitor.IsDBNull(leitor.GetOrdinal("descricao"))
+                        ? ""
+                        : leitor.GetString("descricao")
                 });
             }
 

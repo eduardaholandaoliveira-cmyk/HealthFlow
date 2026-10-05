@@ -1,4 +1,4 @@
-﻿@page "/pacientes"
+﻿@page "/profissionais"
 
 @rendermode InteractiveServer
 
@@ -7,25 +7,24 @@
 @using HealthFlow.DAO
 @using HealthFlow.Models
 
-@inject PacienteDAO PacienteDAO
-@inject NavigationManager NavigationManager
+@inject ProfissionalDAO ProfissionalDAO
 
-<PageTitle>Pacientes - HealthFlow</PageTitle>
+<PageTitle>Profissionais - HealthFlow</PageTitle>
 
-<div class="pacientes-page">
+<div class="profissionais-page">
 
     <div class="cabecalho">
 
         <div>
-            <h1>Pacientes</h1>
+            <h1>Profissionais</h1>
 
             <p>
-                Gerencie os pacientes cadastrados na clínica.
+                Gerencie os profissionais cadastrados na clínica.
             </p>
         </div>
 
-        <a href="/pacientes/cadastro" class="botao-novo">
-            + Novo Paciente
+        <a href="/profissionais/cadastro" class="botao-novo">
+            + Novo Profissional
         </a>
 
     </div>
@@ -42,21 +41,22 @@
         @if (carregando)
         {
             <div class="carregando">
-                Carregando pacientes...
+                Carregando profissionais...
             </div>
         }
-        else if (pacientes.Count == 0)
+        else if (profissionais.Count == 0)
         {
             <div class="vazio">
 
-                <h3>Nenhum paciente cadastrado</h3>
+                <h3>Nenhum profissional cadastrado</h3>
 
                 <p>
-                    Ainda não existem pacientes cadastrados no sistema.
+                    Ainda não existem profissionais cadastrados.
                 </p>
 
-                <a href="/pacientes/cadastro" class="botao-cadastrar">
-                    Cadastrar primeiro paciente
+                <a href="/profissionais/cadastro"
+                       class="botao-cadastrar">
+                    Cadastrar profissional
                 </a>
 
             </div>
@@ -68,66 +68,65 @@
                 <table>
 
                     <thead>
+
                         <tr>
                             <th>ID</th>
                             <th>Nome</th>
                             <th>CPF</th>
-                            <th>Data de nascimento</th>
-                            <th>Sexo</th>
+                            <th>CRM</th>
+                            <th>Especialidade</th>
                             <th>E-mail</th>
                             <th>Telefone</th>
                             <th>Ações</th>
                         </tr>
+
                     </thead>
 
                     <tbody>
 
-                        @foreach (var paciente in pacientes)
+                        @foreach (var profissional in profissionais)
                         {
                             <tr>
 
                                 <td>
-                                    @paciente.IdPaciente
+                                    @profissional.IdProfissional
                                 </td>
 
                                 <td>
-                                    @paciente.NomePaciente
+                                    @profissional.NomeProfissional
                                 </td>
 
                                 <td>
-                                    @paciente.Cpf
+                                    @profissional.Cpf
                                 </td>
 
                                 <td>
-                                    @if (paciente.DataNascimento.HasValue)
-                                    {
-                                        @paciente.DataNascimento.Value.ToString("dd/MM/yyyy")
-                                    }
+                                    @profissional.Crm
                                 </td>
 
                                 <td>
-                                    @paciente.Sexo
+                                    @profissional.NomeEspecialidade
                                 </td>
 
                                 <td>
-                                    @paciente.Email
+                                    @profissional.Email
                                 </td>
 
                                 <td>
-                                    @paciente.Telefone
+                                    @profissional.Telefone
                                 </td>
 
                                 <td>
 
                                     <button type="button"
                                             class="botao-editar"
-                                            @onclick="() => EditarPaciente(paciente.IdPaciente)">
+                                            @onclick="() => EditarProfissional(profissional.IdProfissional)">
                                         Editar
                                     </button>
 
                                     <button type="button"
                                             class="botao-excluir"
-                                            @onclick="() => ExcluirPaciente(paciente.IdPaciente)">
+                                            @onclick="() => ExcluirProfissional(profissional.IdProfissional)">
                                         Deletar
                                     </button>
 
@@ -149,7 +148,7 @@
 
 <style>
 
-    .pacientes-page {
+    .profissionais-page {
         width: 100%;
     }
 
@@ -199,7 +198,7 @@
     table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 1000px;
+        min-width: 1100px;
     }
 
     th {
@@ -260,7 +259,6 @@
     }
 
         .vazio h3 {
-            margin-bottom: 10px;
             color: #172033;
         }
 
@@ -299,7 +297,7 @@
 
 @code {
 
-    private List<PacienteModel> pacientes = new();
+    private List<ProfissionalModel> profissionais = new();
 
     private bool carregando = true;
 
@@ -309,18 +307,18 @@
 
     protected override void OnInitialized()
     {
-        CarregarPacientes();
+        CarregarProfissionais();
     }
 
-    private void CarregarPacientes()
+    private void CarregarProfissionais()
     {
         try
         {
-            pacientes = PacienteDAO.Listar();
+            profissionais = ProfissionalDAO.Listar();
         }
         catch (Exception ex)
         {
-            mensagem = "Erro ao carregar pacientes: " + ex.Message;
+            mensagem = "Erro ao carregar profissionais: " + ex.Message;
             classeMensagem = "mensagem-erro";
         }
         finally
@@ -329,22 +327,22 @@
         }
     }
 
-    private void EditarPaciente(int id)
+    private void EditarProfissional(int id)
     {
         mensagem = "A função de editar ainda será implementada.";
         classeMensagem = "mensagem-erro";
     }
 
-    private void ExcluirPaciente(int id)
+    private void ExcluirProfissional(int id)
     {
         mensagem = "";
         classeMensagem = "";
 
         try
         {
-            string resultado = PacienteDAO.Excluir(id);
+            string resultado = ProfissionalDAO.Excluir(id);
 
-            if (resultado == "Paciente excluído com sucesso!")
+            if (resultado == "Profissional excluído com sucesso!")
             {
                 mensagem = resultado;
                 classeMensagem = "mensagem-sucesso";
@@ -355,11 +353,11 @@
                 classeMensagem = "mensagem-erro";
             }
 
-            CarregarPacientes();
+            CarregarProfissionais();
         }
         catch (Exception ex)
         {
-            mensagem = "Erro ao excluir paciente: " + ex.Message;
+            mensagem = "Erro ao excluir profissional: " + ex.Message;
             classeMensagem = "mensagem-erro";
         }
     }
